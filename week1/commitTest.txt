@@ -1,1 +1,3 @@
 text file to test github setup.
+
+First Commit was forced, checking for un-forced commit success.
