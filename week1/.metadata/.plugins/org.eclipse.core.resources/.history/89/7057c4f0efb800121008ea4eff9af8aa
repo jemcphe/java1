@@ -1,5 +1,7 @@
 package com.jemcphe.javawk1;
 
+import java.math.BigDecimal;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.text.Editable;
@@ -132,15 +134,15 @@ public class MainActivity extends Activity {
 				float hits = Float.parseFloat(hitsEntry.getText().toString());
 				
 				float battingAverage = (hits/plateAppearances);
+				BigDecimal decimal = new BigDecimal(battingAverage);
+				BigDecimal decimalPlace = decimal.setScale(3);
+				battingAverage = decimalPlace.floatValue();
+				
 				//Set Text of result
-				if (hits > plateAppearances){
-					result.setText("\nInvalid Data Entry: You cannot have more hits than plate appearances");
-				} else {
 				result.setText("Player Name: " + playerName + "\r\n" +
 						"Plate Appearances: " + plateAppearances + "\r\n" +
 						"Hits: " + hits + "\r\n" +
 						"Batting Average: " + battingAverage + "\r\n");
-				}
 			}
 		});
         

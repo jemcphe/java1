@@ -2,7 +2,6 @@ package com.jemcphe.javawk1;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.text.Editable;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -39,9 +38,6 @@ public class MainActivity extends Activity {
 	String[] startingLineup;
 	
 	String player;
-	
-	//TextView for results
-	TextView result;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +114,6 @@ public class MainActivity extends Activity {
         plateEntry.setHint("ex: 4");
         hitsEntry = new EditText(this);
         hitsEntry.setHint("ex: 3");
-      
         
       //Create button for getBattingAverage click event.
         Button calculateButton = new Button(this);
@@ -127,20 +122,8 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				String playerName = playerEntry.getText().toString();
-				float plateAppearances = Float.parseFloat(plateEntry.getText().toString());
-				float hits = Float.parseFloat(hitsEntry.getText().toString());
+				// TODO Auto-generated method stub
 				
-				float battingAverage = (hits/plateAppearances);
-				//Set Text of result
-				if (hits > plateAppearances){
-					result.setText("\nInvalid Data Entry: You cannot have more hits than plate appearances");
-				} else {
-				result.setText("Player Name: " + playerName + "\r\n" +
-						"Plate Appearances: " + plateAppearances + "\r\n" +
-						"Hits: " + hits + "\r\n" +
-						"Batting Average: " + battingAverage + "\r\n");
-				}
 			}
 		});
         
@@ -160,10 +143,7 @@ public class MainActivity extends Activity {
         dataLayout = new LinearLayout(this);
         dataLayout.setOrientation(LinearLayout.VERTICAL);
         dataParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        
-        result = new TextView(this);
-        dataLayout.addView(result);
-        mainLayout.addView(dataLayout);
+
         
         
         

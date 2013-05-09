@@ -134,7 +134,7 @@ public class MainActivity extends Activity {
 				float battingAverage = (hits/plateAppearances);
 				//Set Text of result
 				if (hits > plateAppearances){
-					result.setText("\nInvalid Data Entry: You cannot have more hits than plate appearances");
+					result.setText("Invalid Data Entry: You cannot have more hits than plate appearances");
 				} else {
 				result.setText("Player Name: " + playerName + "\r\n" +
 						"Plate Appearances: " + plateAppearances + "\r\n" +

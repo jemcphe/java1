@@ -128,19 +128,15 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				String playerName = playerEntry.getText().toString();
-				float plateAppearances = Float.parseFloat(plateEntry.getText().toString());
-				float hits = Float.parseFloat(hitsEntry.getText().toString());
+				int plateAppearances = Integer.parseInt(plateEntry.getText().toString());
+				int hits = Integer.parseInt(hitsEntry.getText().toString());
 				
 				float battingAverage = (hits/plateAppearances);
 				//Set Text of result
-				if (hits > plateAppearances){
-					result.setText("\nInvalid Data Entry: You cannot have more hits than plate appearances");
-				} else {
 				result.setText("Player Name: " + playerName + "\r\n" +
 						"Plate Appearances: " + plateAppearances + "\r\n" +
 						"Hits: " + hits + "\r\n" +
 						"Batting Average: " + battingAverage + "\r\n");
-				}
 			}
 		});
         
