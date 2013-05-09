@@ -33,6 +33,15 @@ public final class R {
         public static final int action_settings=0x7f040001;
         public static final int app_name=0x7f040000;
         public static final int hello_world=0x7f040002;
+        public static final int player_name1=0x7f040003;
+        public static final int player_name2=0x7f040004;
+        public static final int player_name3=0x7f040005;
+        public static final int player_name4=0x7f040006;
+        public static final int player_name5=0x7f040007;
+        public static final int player_name6=0x7f040008;
+        public static final int player_name7=0x7f040009;
+        public static final int player_name8=0x7f04000a;
+        public static final int player_name9=0x7f04000b;
     }
     public static final class style {
         /** 

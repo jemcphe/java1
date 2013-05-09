@@ -13,15 +13,15 @@ CONDITIONALS:
 - If statement to determine if the players Average was a good showing.
 
 ANDROID RESOURCE VALUE:
-<string name="player_name">Ian Kinsler</string>
-<string name="player_name">Elvis Andrus</string>
-<string name="player_name">Adrian Beltre</string>
-<string name="player_name">Nelson Cruz</string>
-<string name="player_name">Mitch Moreland</string>
-<string name="player_name">Geovany Soto</string>
-<string name="player_name">David Murphy</string>
-<string name="player_name">Leonys Martin</string>
-<string name="player_name">Lance Berkman</string>
+<string name="player_name1">Ian Kinsler</string>
+<string name="player_name2">Elvis Andrus</string>
+<string name="player_name3">Adrian Beltre</string>
+<string name="player_name4">Nelson Cruz</string>
+<string name="player_name5">Mitch Moreland</string>
+<string name="player_name6">Geovany Soto</string>
+<string name="player_name7">David Murphy</string>
+<string name="player_name8">Leonys Martin</string>
+<string name="player_name9">Lance Berkman</string>
 
 VARIABLES:
 String playerName;
