@@ -1,0 +1,4 @@
+INDEX VERSION 1.126+/Users/jemcphe/Desktop/java1/week1/.metadata/.plugins/org.eclipse.jdt.core
+764106289.index
+3277786571.index
+1026779192.index

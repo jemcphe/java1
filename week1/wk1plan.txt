@@ -1,0 +1,34 @@
+Java1 - WK 1 Idea
+
+To meet requirements:
+ALL OF THE FOLLOWING WRAPPED IN A LINEAR LAYOUT
+
+LOOP - Loop through starting roster of Texas Rangers (or at least first three in batting rotation)
+
+FUNCTION: getBattingAverage() will calculate the batting average for whichever player the user inputs into the text field.
+
+CONDITIONALS: 
+- Switch statement to check for correct entry of player name in the given textField.
+- If statement to check of numberOfHits is more than timesAtPlate.  Display an appropriate message to the user if it is.
+- If statement to determine if the players Average was a good showing.
+
+ANDROID RESOURCE VALUE:
+<string name="player_name">Ian Kinsler</string>
+<string name="player_name">Elvis Andrus</string>
+<string name="player_name">Adrian Beltre</string>
+<string name="player_name">Nelson Cruz</string>
+<string name="player_name">Mitch Moreland</string>
+<string name="player_name">Geovany Soto</string>
+<string name="player_name">David Murphy</string>
+<string name="player_name">Leonys Martin</string>
+<string name="player_name">Lance Berkman</string>
+
+VARIABLES:
+String playerName;
+Bool goodDay = TRUE;
+int timesAtPlate;
+int numberOfHits;
+float battingAverage;
+
+CLICK EVENT HANDLER:
+Button to calculate the Batting Average for a specific player.  The user will enter the playerName, timesAtPlate, and numberOfHits.  When clicked, a Textview will display to the user to show the results of their calculations.
