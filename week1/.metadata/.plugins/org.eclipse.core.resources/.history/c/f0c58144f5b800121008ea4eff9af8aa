@@ -141,21 +141,25 @@ public class MainActivity extends Activity {
         		}
 
         		//Set Text of result
-        		if (hits > plateAppearances){
-        			result.setText("\nInvalid Data Entry: You cannot have more hits than plate appearances");
+        		if (playerName == ""){
+        			result.setText("You must enter a player's name");
         		} else {
-        			if (goodPerformance == true){
-        				result.setText("Player Name: " + playerName + "\r\n" +
-        						"Plate Appearances: " + plateAppearances + "\r\n" +
-        						"Hits: " + hits + "\r\n" +
-        						"Batting Average: " + battingAverage + "\r\n\r\n" +
-        						"Performance: " + playerName + " had a very good game today!");
+        			if (hits > plateAppearances){
+        				result.setText("\nInvalid Data Entry: You cannot have more hits than plate appearances");
         			} else {
-        				result.setText("Player Name: " + playerName + "\r\n" +
-        						"Plate Appearances: " + plateAppearances + "\r\n" +
-        						"Hits: " + hits + "\r\n" +
-        						"Batting Average: " + battingAverage + "\r\n\r\n" +
-        						"Performance: " + playerName + " had a poor performance today\r\n");
+        				if (goodPerformance == true){
+        					result.setText("Player Name: " + playerName + "\r\n" +
+        							"Plate Appearances: " + plateAppearances + "\r\n" +
+        							"Hits: " + hits + "\r\n" +
+        							"Batting Average: " + battingAverage + "\r\n\r\n" +
+        							"Performance: " + playerName + " had a very good game today!");
+        				} else {
+        					result.setText("Player Name: " + playerName + "\r\n" +
+        							"Plate Appearances: " + plateAppearances + "\r\n" +
+        							"Hits: " + hits + "\r\n" +
+        							"Batting Average: " + battingAverage + "\r\n\r\n" +
+        							"Performance: " + playerName + " had a poor performance today\r\n");
+        				}
         			}
         		}
         	}

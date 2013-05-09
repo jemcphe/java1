@@ -143,6 +143,8 @@ public class MainActivity extends Activity {
         		//Set Text of result
         		if (hits > plateAppearances){
         			result.setText("\nInvalid Data Entry: You cannot have more hits than plate appearances");
+        		}else if (playerName == ""){
+        			result.setText("Please enter a player's name");
         		} else {
         			if (goodPerformance == true){
         				result.setText("Player Name: " + playerName + "\r\n" +

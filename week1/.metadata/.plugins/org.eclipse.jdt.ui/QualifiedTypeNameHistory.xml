@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="android.widget.TextView"/>
+<fullyQualifiedTypeName name="android.widget.EditText"/>
+<fullyQualifiedTypeName name="android.widget.Button"/>
+<fullyQualifiedTypeName name="android.widget.LinearLayout"/>
+<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
+<fullyQualifiedTypeName name="com.jemcphe.javawk1.R.string"/>
+<fullyQualifiedTypeName name="android.widget.ScrollView"/>
+<fullyQualifiedTypeName name="android.widget.LinearLayout.LayoutParams"/>
+<fullyQualifiedTypeName name="java.math.BigDecimal"/>
+<fullyQualifiedTypeName name="java.text.DecimalFormat"/>
+</qualifiedTypeNameHistroy>

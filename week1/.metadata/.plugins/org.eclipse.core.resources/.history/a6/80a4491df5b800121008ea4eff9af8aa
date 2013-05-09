@@ -141,6 +141,9 @@ public class MainActivity extends Activity {
         		}
 
         		//Set Text of result
+        		if (playerName == ""){
+        			result.setText("You must enter a player's name");
+        		} else {
         		if (hits > plateAppearances){
         			result.setText("\nInvalid Data Entry: You cannot have more hits than plate appearances");
         		} else {
@@ -158,6 +161,7 @@ public class MainActivity extends Activity {
         						"Performance: " + playerName + " had a poor performance today\r\n");
         			}
         		}
+        	}
         	}
         });
         

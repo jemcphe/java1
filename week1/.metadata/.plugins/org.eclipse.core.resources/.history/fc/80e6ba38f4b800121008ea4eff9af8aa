@@ -134,7 +134,7 @@ public class MainActivity extends Activity {
         		float battingAverage = (hits/plateAppearances);
 
         		//check for a goodPerformance
-        		if	(battingAverage >= 0.5f) {
+        		if	(battingAverage >= 0.45f) {
         			goodPerformance = true;
         		} else {
         			goodPerformance = false;
@@ -155,7 +155,7 @@ public class MainActivity extends Activity {
         						"Plate Appearances: " + plateAppearances + "\r\n" +
         						"Hits: " + hits + "\r\n" +
         						"Batting Average: " + battingAverage + "\r\n\r\n" +
-        						"Performance: " + playerName + " had a poor performance today\r\n");
+        						"Performance: " + playerName + " had a poor performance today");
         			}
         		}
         	}

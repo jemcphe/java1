@@ -155,7 +155,7 @@ public class MainActivity extends Activity {
         						"Plate Appearances: " + plateAppearances + "\r\n" +
         						"Hits: " + hits + "\r\n" +
         						"Batting Average: " + battingAverage + "\r\n\r\n" +
-        						"Performance: " + playerName + " had a poor performance today\r\n");
+        						"Performance: " + playerName + " had a poor performance today");
         			}
         		}
         	}
