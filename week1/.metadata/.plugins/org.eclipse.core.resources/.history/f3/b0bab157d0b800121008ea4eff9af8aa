@@ -43,9 +43,8 @@ public class MainActivity extends Activity {
         EditText playerEntry = new EditText(this);
         playerEntry.setHint("ex: Ian Kinsler");
         EditText plateEntry = new EditText(this);
-        plateEntry.setHint("ex: 4");
-        EditText hitsEntry = new EditText(this);
-        hitsEntry.setHint("ex: 3");
+        plateEntry.setHint("ex: Ian Kinsler");
+        EditText numberOfHits = new EditText(this);
         
         //Create button for getBattingAverage click event.
         Button calculateButton = new Button(this);
@@ -56,7 +55,7 @@ public class MainActivity extends Activity {
         mainLayout.addView(atPlateLabel);
         mainLayout.addView(plateEntry);
         mainLayout.addView(hitsLabel);
-        mainLayout.addView(hitsEntry);
+        mainLayout.addView(numberOfHits);
         mainLayout.addView(calculateButton);
         
         

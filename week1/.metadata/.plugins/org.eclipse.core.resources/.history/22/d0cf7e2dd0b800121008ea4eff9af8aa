@@ -41,11 +41,8 @@ public class MainActivity extends Activity {
         
         //Add Edit Text Fields to mainLayout
         EditText playerEntry = new EditText(this);
-        playerEntry.setHint("ex: Ian Kinsler");
-        EditText plateEntry = new EditText(this);
-        plateEntry.setHint("ex: 4");
-        EditText hitsEntry = new EditText(this);
-        hitsEntry.setHint("ex: 3");
+        EditText timesAtPlate = new EditText(this);
+        EditText numberOfHits = new EditText(this);
         
         //Create button for getBattingAverage click event.
         Button calculateButton = new Button(this);
@@ -54,9 +51,9 @@ public class MainActivity extends Activity {
         mainLayout.addView(playerLabel);
         mainLayout.addView(playerEntry);
         mainLayout.addView(atPlateLabel);
-        mainLayout.addView(plateEntry);
+        mainLayout.addView(timesAtPlate);
         mainLayout.addView(hitsLabel);
-        mainLayout.addView(hitsEntry);
+        mainLayout.addView(numberOfHits);
         mainLayout.addView(calculateButton);
         
         

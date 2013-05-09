@@ -3,7 +3,6 @@ package com.jemcphe.javawk1;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,12 +22,9 @@ public class MainActivity extends Activity {
         mainParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         mainLayout.setLayoutParams(mainParams);
         
-        //Create TextViews to hold introText, playerLabel, atPlateLabel, & hitsLabel
+        //Create TextViews to hold introText, atPlateLabel, & hitsLabel
         TextView introText = new TextView(this);
-        introText.setText("The Texas Rangers Starting Lineup For Today\n");
-        
-        TextView playerLabel = new TextView(this);
-        playerLabel.setText("Player Name:");
+        introText.setText("The Texas Rangers Starting Lineup For Today");
         
         TextView atPlateLabel = new TextView(this);
         atPlateLabel.setText("How many plate appearances?");
@@ -40,24 +36,13 @@ public class MainActivity extends Activity {
         mainLayout.addView(introText);
         
         //Add Edit Text Fields to mainLayout
-        EditText playerEntry = new EditText(this);
-        playerEntry.setHint("ex: Ian Kinsler");
-        EditText plateEntry = new EditText(this);
-        plateEntry.setHint("ex: 4");
-        EditText hitsEntry = new EditText(this);
-        hitsEntry.setHint("ex: 3");
-        
-        //Create button for getBattingAverage click event.
-        Button calculateButton = new Button(this);
-        calculateButton.setText("Calculate Batting Average");
+        EditText timesAtPlate = new EditText(this);
+        EditText numberOfHits = new EditText(this);
 
-        mainLayout.addView(playerLabel);
-        mainLayout.addView(playerEntry);
         mainLayout.addView(atPlateLabel);
-        mainLayout.addView(plateEntry);
+        mainLayout.addView(timesAtPlate);
         mainLayout.addView(hitsLabel);
-        mainLayout.addView(hitsEntry);
-        mainLayout.addView(calculateButton);
+        mainLayout.addView(numberOfHits);
         
         
         //Set the Content of the application
