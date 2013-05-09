@@ -81,7 +81,6 @@ public class MainActivity extends Activity {
         formLayout.addView(plateEntry);
         formLayout.addView(hitsLabel);
         formLayout.addView(hitsEntry);
-        formLayout.addView(calculateButton);
         
         //Append formLayout to mainLayout
         mainLayout.addView(formLayout);
@@ -90,8 +89,17 @@ public class MainActivity extends Activity {
         dataLayout = new LinearLayout(this);
         dataLayout.setOrientation(LinearLayout.VERTICAL);
         dataParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        
+        
+        
+        //Add introText TextView to the mainLayout
+        //mainLayout.addView(introText);
+        
 
         
+        
+
+        mainLayout.addView(calculateButton);
         
         
         //Set the Content of the application

@@ -70,28 +70,27 @@ public class MainActivity extends Activity {
         EditText hitsEntry = new EditText(this);
         hitsEntry.setHint("ex: 3");
         
-      //Create button for getBattingAverage click event.
-        Button calculateButton = new Button(this);
-        calculateButton.setText("Calculate Batting Average");
-        
-        //Append views to formLayout
-        formLayout.addView(playerLabel);
-        formLayout.addView(playerEntry);
-        formLayout.addView(atPlateLabel);
-        formLayout.addView(plateEntry);
-        formLayout.addView(hitsLabel);
-        formLayout.addView(hitsEntry);
-        formLayout.addView(calculateButton);
-        
-        //Append formLayout to mainLayout
-        mainLayout.addView(formLayout);
-        
         /******************************** Data Layout ******************************/
-        dataLayout = new LinearLayout(this);
-        dataLayout.setOrientation(LinearLayout.VERTICAL);
-        dataParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
         
+        
+        
+        //Add introText TextView to the mainLayout
+        //mainLayout.addView(introText);
+        
+
+        
+        //Create button for getBattingAverage click event.
+//        Button calculateButton = new Button(this);
+//        calculateButton.setText("Calculate Batting Average");
+
+//        mainLayout.addView(playerLabel);
+//        mainLayout.addView(playerEntry);
+//        mainLayout.addView(atPlateLabel);
+//        mainLayout.addView(plateEntry);
+//        mainLayout.addView(hitsLabel);
+//        mainLayout.addView(hitsEntry);
+//        mainLayout.addView(calculateButton);
         
         
         //Set the Content of the application

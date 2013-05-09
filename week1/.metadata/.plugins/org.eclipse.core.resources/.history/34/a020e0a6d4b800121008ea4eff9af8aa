@@ -90,8 +90,16 @@ public class MainActivity extends Activity {
         dataLayout = new LinearLayout(this);
         dataLayout.setOrientation(LinearLayout.VERTICAL);
         dataParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        
+        
+        
+        //Add introText TextView to the mainLayout
+        //mainLayout.addView(introText);
+        
 
         
+        
+
         
         
         //Set the Content of the application
