@@ -1,0 +1,44 @@
+package com.jemcphe.LeagueLib;
+
+public enum Position {
+	PITCHER(1),
+	CATCHER(2),
+	FIRST(3), 
+	SECOND(4),
+	THIRD(5),
+	SHORTSTOP(6),
+	LEFT(7),
+	CENTER(8),
+	RIGHT(9);
+		
+		private final int value;
+		
+		Position(int value){
+			this.value = value;
+		}
+		
+		public void getTeamDetails() {
+			
+			switch (teamName) {
+			case TEAM1:
+				
+				break;
+			case TEAM2:
+				
+				break;
+			case TEAM3:
+
+				break;
+			case TEAM4:
+
+				break;
+			case TEAM5:
+
+				break;
+			default:
+				break;
+			}
+			
+		}
+	
+}

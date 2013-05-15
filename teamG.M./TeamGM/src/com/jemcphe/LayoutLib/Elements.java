@@ -4,13 +4,16 @@ import android.content.Context;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.LinearLayout.LayoutParams;
 
 public class Elements {
-	public static LinearLayout singleEntryWithLabel(Context context, String label, String hint) {
+	
+	public static LinearLayout singleEntryWithButton(Context context, String label, String hint, String buttonText) {
 		LinearLayout ll = new LinearLayout(context);
+		ll.setOrientation(LinearLayout.VERTICAL);
 		LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		ll.setLayoutParams(lp);
 		
@@ -24,22 +27,23 @@ public class Elements {
 		entryText.setHint(hint);
 		ll.addView(entryText);
 		
+		//Create Button, setText, add to view
+		Button button = new Button(context);
+		button.setText(buttonText);
+		ll.addView(button);
+		
 		return ll;
 	}
 	
-	public static Button singleButton(Context context, String buttonText){
-		//Create Button, setText
-		Button button = new Button(context);
-		button.setText(buttonText);
+	public static RadioGroup getPosition(Context context, String [] positions) {
+		RadioGroup positionBox = new RadioGroup(context);
 		
-		return button;
-	}
-	
-	public static Spinner singleSpinner(Context context, String prompt, String teams){
+		for(int i=0; i<positions.length; i++){
+			RadioButton rb = new RadioButton(context);
+			rb.setText(positions[i]);
+			positionBox.addView(rb);
+		}
 		
-		Spinner teamSpinner = new Spinner(context);
-		teamSpinner.setPrompt(prompt);
-		
-		return teamSpinner;
+		return positionBox;
 	}
 }
