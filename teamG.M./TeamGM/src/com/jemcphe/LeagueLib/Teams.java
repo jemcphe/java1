@@ -2,7 +2,10 @@ package com.jemcphe.LeagueLib;
 
 public enum Teams {
 	TEXAS("Texas Rangers", "Ian Kinsler", "2nd Base", "AL West"),
-	YANKEES("New York Yankees", "Derek Jeter", "Shortstop", "AL East");
+	YANKEES("New York Yankees", "Derek Jeter", "Shortstop", "AL East"),
+	DETROIT("Detroit Tigers", "Justin Verlander", "Pitcher", "AL Central"),
+	ATLANTA("Atlanta Braves", "Jason Heyward", "Right Field", "NL East"),
+	STLOUIS("St. Louis Cardinals", "Matt Holiday", "Left Field", "NL West");
 	
 	private final String teamName;
 	private final String keyPlayer;
@@ -27,5 +30,9 @@ public enum Teams {
 	}
 	public String setDivision(){
 		return division;
+	}
+	
+	public String getTeamName(){
+		return this.teamName;
 	}
 }

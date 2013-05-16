@@ -1,0 +1,14 @@
+package com.jemcphe.LeagueLib;
+
+public interface TeamInterface {
+	
+	
+	
+	public String setTeamName();
+	public String setKeyPlayer();
+	public String setPosition();
+	public String setDivision();
+	
+	public String getTeamName();
+	
+}
