@@ -1,0 +1,25 @@
+package com.jemcphe.LeagueLib;
+
+import java.util.ArrayList;
+
+import org.json.JSONObject;
+
+public class JSON {
+	ArrayList<String> playerTags;
+	
+	public static JSONObject buildJSON() {
+		
+		JSONObject playerObject = new JSONObject();
+		
+		JSONObject queryObject = new JSONObject();
+		
+		return null;
+	}
+	
+	public static JSONObject readJSON(String selected) {
+		
+		
+		
+		return null;
+	}
+}

@@ -25,11 +25,14 @@ public class Elements {
 		//Create EditText, setHint, add to View
 		EditText entryText = new EditText(context);
 		entryText.setHint(hint);
+		entryText.setId(1);
 		ll.addView(entryText);
 		
 		//Create Button, setText, add to view
 		Button button = new Button(context);
 		button.setText(buttonText);
+		button.setId(2);
+		button.setTag(entryText);
 		ll.addView(button);
 		
 		return ll;
