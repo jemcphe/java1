@@ -12,14 +12,13 @@ public enum Teams {
 	private final String position;
 	private final String division;
 	
-	
 	private Teams(String teamName, String keyPlayer, String position, String division){
 		this.teamName = teamName;
 		this.keyPlayer = keyPlayer;
 		this.position = position;
 		this.division = division;
 	}
-	//Functions that set given value
+
 	public String setTeamName(){
 		return teamName;
 	}

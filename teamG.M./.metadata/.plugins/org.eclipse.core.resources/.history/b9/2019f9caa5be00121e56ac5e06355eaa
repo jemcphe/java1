@@ -37,7 +37,7 @@ public class Elements {
 		
 		return ll;
 	}
-	//Create RadioGroup that holds an array of values
+	
 	public static RadioGroup getTeam(Context context, String [] teams) {
 		RadioGroup teamBox = new RadioGroup(context);
 		

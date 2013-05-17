@@ -8,10 +8,10 @@ import com.jemcphe.LeagueLib.Teams;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-//Create Json class
+
 public class Json {
 	ArrayList<String> playerTags;
-	//This function creates JSON data from Teams enum
+	
 	public static JSONObject buildJSON(){
 		
 		JSONObject teamObject = new JSONObject();
@@ -44,7 +44,6 @@ public class Json {
 		return teamObject;
 	}
 	
-	//function that returns JSON data
 	public static String readJSON(String radioText){
 		String result, teamName, keyPlayer, position, division;
 		JSONObject object = buildJSON();

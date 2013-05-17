@@ -1,5 +1,5 @@
 package com.jemcphe.LeagueLib;
-//Class that sets/gets player name
+
 public class Player {
 	
 	String name;

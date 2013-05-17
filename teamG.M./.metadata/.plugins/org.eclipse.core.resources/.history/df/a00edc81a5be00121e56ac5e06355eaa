@@ -81,7 +81,7 @@ public class MainActivity extends Activity {
 			}
 		});
         
-        //Data layout
+        
         dataLayout = new LinearLayout(this);
         dataLayout.setOrientation(LinearLayout.VERTICAL);
         dataParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);

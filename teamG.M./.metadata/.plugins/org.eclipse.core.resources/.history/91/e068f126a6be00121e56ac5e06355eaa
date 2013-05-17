@@ -44,7 +44,6 @@ public class Json {
 		return teamObject;
 	}
 	
-	//function that returns JSON data
 	public static String readJSON(String radioText){
 		String result, teamName, keyPlayer, position, division;
 		JSONObject object = buildJSON();

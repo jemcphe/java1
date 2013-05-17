@@ -20,7 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
-	//Create Linear Layouts
+
 	LinearLayout mainLayout;
 	LayoutParams mainParams;
 	
@@ -32,7 +32,6 @@ public class MainActivity extends Activity {
 	LinearLayout dataLayout;
 	LayoutParams dataParams;
 	
-	//Declare Variables
 	TextView dataBox;
 	TextView teamData;
 	RadioGroup teamOptions;
@@ -47,28 +46,27 @@ public class MainActivity extends Activity {
         mainParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         mainLayout.setLayoutParams(mainParams);
         
-        //RadioLayout & Params
+
         radioLayout = new LinearLayout(this);
         radioLayout.setOrientation(LinearLayout.VERTICAL);
         radioParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         radioLayout.setLayoutParams(radioParams);
         
-        //array that holds resources remote
         teamNames = getResources().getStringArray(R.array.remote);
-        //call getTeam function
+        
         teamOptions = Elements.getTeam(this, teamNames);
-        //Add teamOptions view to radioLayout
+        
         radioLayout.addView(teamOptions);
-        //Create entryBox that has single EditText With Button
+        
         entryBox = Elements.singleEntryWithButton(this, "\r\nPlayer Name", "ex. Sam Doe", "Add Player");
         entryBox.setOrientation(LinearLayout.VERTICAL);
-        //Create button and findViewById
+        
         Button dataButton = (Button) entryBox.findViewById(2);
         dataButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				//int to hold radio button id
+				
 				int selectedRadioId = teamOptions.getCheckedRadioButtonId();
 				RadioButton selectedRadio = (RadioButton) findViewById(selectedRadioId);
 				String radioText = (String) selectedRadio.getText();
@@ -81,7 +79,7 @@ public class MainActivity extends Activity {
 			}
 		});
         
-        //Data layout
+        
         dataLayout = new LinearLayout(this);
         dataLayout.setOrientation(LinearLayout.VERTICAL);
         dataParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);

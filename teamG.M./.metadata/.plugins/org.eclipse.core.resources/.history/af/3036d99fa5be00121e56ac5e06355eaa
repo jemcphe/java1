@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.LinearLayout.LayoutParams;
 
 public class Elements {
-	//Function to return a LinearLayout that contains EditText w/ button
+	
 	public static LinearLayout singleEntryWithButton(Context context, String label, String hint, String buttonText) {
 		LinearLayout ll = new LinearLayout(context);
 		ll.setOrientation(LinearLayout.VERTICAL);
@@ -37,7 +37,7 @@ public class Elements {
 		
 		return ll;
 	}
-	//Create RadioGroup that holds an array of values
+	
 	public static RadioGroup getTeam(Context context, String [] teams) {
 		RadioGroup teamBox = new RadioGroup(context);
 		
