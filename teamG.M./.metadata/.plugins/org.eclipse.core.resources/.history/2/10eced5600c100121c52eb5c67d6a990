@@ -1,0 +1,26 @@
+package com.jemcphe.LeagueLib;
+
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
+public class WebData {
+	
+	//Global Variables
+	static Boolean isConnected = false;
+	static String isType = "Unavailable";
+	
+	//CONNECTIVITY CHECK FUNCTION
+	private static void netInfo(Context context) {
+		ConnectivityManager connectManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo netInfo = connectManager.getActiveNetworkInfo();
+		
+		//Check for network connectivity
+		if (netInfo != null) {
+			if(netInfo.isConnected()) {
+				
+			}
+		}
+	}
+	
+}

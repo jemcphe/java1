@@ -1,12 +1,10 @@
 package com.jemcphe.teamgm;
 
-import java.util.ArrayList;
-
 import com.jemcphe.LayoutLib.Elements;
 import com.jemcphe.LayoutLib.SpinnerDisplay;
 import com.jemcphe.LayoutLib.TeamDisplay;
 import com.jemcphe.LeagueLib.Json;
-import com.jemcphe.LeagueLib.Teams;
+import com.jemcphe.LeagueLib.WebData;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -44,7 +42,7 @@ public class MainActivity extends Activity {
 	TextView teamData;
 	RadioGroup teamOptions;
 	String[] teamNames;
-	
+	Boolean _connected = false;
 	Context _context;
 	
     @Override
@@ -52,6 +50,13 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         
         _context = this;
+        
+        //Determine data connection
+        _connected = WebData.getConnectionStatus(_context);
+        //Check for connection
+        if(_connected) {
+        	Log.i("Network Connection", WebData.getConnectionType(_context));
+        }
         
         //Create LinearLayout for Main Layout
         mainLayout = new LinearLayout(_context);
@@ -104,8 +109,10 @@ public class MainActivity extends Activity {
         dataLayout.addView(dataBox);
         dataLayout.addView(teamData);
         
+       
+        
         //Add SpinnerDisplay
-        _teamList = new SpinnerDisplay(_context);
+       // _teamList = new SpinnerDisplay(_context);
         
         //Add Team Display
         _teamDisplay = new TeamDisplay(_context);
@@ -116,7 +123,7 @@ public class MainActivity extends Activity {
         mainLayout.setOrientation(LinearLayout.VERTICAL);
         mainLayout.addView(radioLayout);
         mainLayout.addView(entryBox);
-        mainLayout.addView(_teamList);
+        //mainLayout.addView(_teamList);
         mainLayout.addView(_teamDisplay);
         setContentView(mainLayout);
     }
