@@ -1,0 +1,28 @@
+package com.jemcphe.LayoutLib;
+
+import android.content.Context;
+import android.widget.GridLayout;
+import android.widget.TextView;
+
+public class TeamDisplay extends GridLayout{
+
+	TextView _name;
+	TextView _pitcher;
+	TextView _catcher;
+	TextView _first;
+	TextView _second;
+	TextView _third;
+	TextView _short;
+	TextView _left;
+	TextView _center;
+	TextView _right;
+	Context _context;
+	
+	public TeamDisplay(Context context) {
+		super(context);
+		
+		
+		
+	}
+	
+}

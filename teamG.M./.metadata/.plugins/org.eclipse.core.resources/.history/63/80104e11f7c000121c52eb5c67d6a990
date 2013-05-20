@@ -107,8 +107,9 @@ public class MainActivity extends Activity {
         
 //        entryBox.addView(dataLayout);
         mainLayout.addView(radioLayout);
+        mainLayout.addView(_teamDisplay);
         radioLayout.addView(entryBox);
-        entryBox.addView(_teamDisplay);
+        entryBox.addView(dataLayout);
         setContentView(mainLayout);
     }
 

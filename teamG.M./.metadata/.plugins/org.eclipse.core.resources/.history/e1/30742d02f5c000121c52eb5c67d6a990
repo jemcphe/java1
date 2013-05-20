@@ -1,0 +1,53 @@
+package com.jemcphe.LayoutLib;
+
+import android.content.Context;
+import android.widget.GridLayout;
+import android.widget.TextView;
+
+public class TeamDisplay extends GridLayout{
+
+	TextView _name;
+	TextView _pitcher;
+	TextView _catcher;
+	TextView _first;
+	TextView _second;
+	TextView _third;
+	TextView _short;
+	TextView _left;
+	TextView _center;
+	TextView _right;
+	Context _context;
+	
+	public TeamDisplay(Context context) {
+		super(context);
+		
+		_context = context;
+		
+		//give layout 2 columns
+		this.setColumnCount(2);
+		
+		//Create TextView Labels
+		TextView nameLabel = new TextView(_context);
+		_name = new TextView(_context);
+		TextView pitcherLabel = new TextView(_context);
+		_pitcher = new TextView(_context);
+		TextView catcherLabel = new TextView(_context);
+		_catcher = new TextView(_context);
+		TextView firstLabel = new TextView(_context);
+		_first = new TextView(_context);
+		TextView secondLabel = new TextView(_context);
+		_second = new TextView(_context);
+		TextView thirdLabel = new TextView(_context);
+		_third = new TextView(_context);
+		TextView shortLabel = new TextView(_context);
+		_short = new TextView(_context);
+		TextView leftLabel = new TextView(_context);
+		_left = new TextView(_context);
+		TextView centerLabel = new TextView(_context);
+		_center = new TextView(_context);
+		TextView rightLabel = new TextView(_context);
+		_right = new TextView(_context);
+		
+	}
+	
+}

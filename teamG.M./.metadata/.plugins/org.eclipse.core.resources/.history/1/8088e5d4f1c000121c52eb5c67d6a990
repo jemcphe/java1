@@ -10,10 +10,8 @@ import android.widget.TextView;
 import android.widget.LinearLayout.LayoutParams;
 
 public class Elements {
-	
 	//Function to return a LinearLayout that contains EditText w/ button
 	public static LinearLayout singleEntryWithButton(Context context, String label, String hint, String buttonText) {
-		
 		LinearLayout ll = new LinearLayout(context);
 		ll.setOrientation(LinearLayout.VERTICAL);
 		LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);

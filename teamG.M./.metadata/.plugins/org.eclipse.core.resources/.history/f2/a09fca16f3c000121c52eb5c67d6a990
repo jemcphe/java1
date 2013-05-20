@@ -1,0 +1,12 @@
+package com.jemcphe.LayoutLib;
+
+import android.content.Context;
+import android.widget.GridLayout;
+
+public class TeamDisplay extends GridLayout{
+
+	public TeamDisplay(Context context) {
+		super(context);
+	}
+	
+}

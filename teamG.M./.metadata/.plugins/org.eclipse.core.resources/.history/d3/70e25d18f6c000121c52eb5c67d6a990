@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
         _context = this;
         
         //Create LinearLayout for Main Layout
-        mainLayout = new LinearLayout(_context);
+        mainLayout = new LinearLayout(this);
         mainParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         mainLayout.setLayoutParams(mainParams);
         
@@ -108,7 +108,7 @@ public class MainActivity extends Activity {
 //        entryBox.addView(dataLayout);
         mainLayout.addView(radioLayout);
         radioLayout.addView(entryBox);
-        entryBox.addView(_teamDisplay);
+        entryBox.addView(dataLayout);
         setContentView(mainLayout);
     }
 
