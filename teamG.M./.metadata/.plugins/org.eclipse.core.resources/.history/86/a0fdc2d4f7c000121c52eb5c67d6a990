@@ -106,10 +106,9 @@ public class MainActivity extends Activity {
         
         
 //        entryBox.addView(dataLayout);
-        mainLayout.setOrientation(LinearLayout.VERTICAL);
         mainLayout.addView(radioLayout);
-        mainLayout.addView(entryBox);
-        mainLayout.addView(_teamDisplay);
+        radioLayout.addView(entryBox);
+        entryBox.addView(_teamDisplay);
         setContentView(mainLayout);
     }
 
