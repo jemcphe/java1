@@ -1,0 +1,14 @@
+package com.jemcphe.LayoutLib;
+
+import android.content.Context;
+import android.widget.LinearLayout;
+
+public class TeamSearch extends LinearLayout{
+
+	Context _context;
+	
+	public TeamSearch(Context context) {
+		super(context);
+	}
+	
+}

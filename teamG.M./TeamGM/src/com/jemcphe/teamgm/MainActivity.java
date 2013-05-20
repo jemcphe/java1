@@ -3,6 +3,7 @@ package com.jemcphe.teamgm;
 import com.jemcphe.LayoutLib.Elements;
 import com.jemcphe.LayoutLib.SpinnerDisplay;
 import com.jemcphe.LayoutLib.TeamDisplay;
+import com.jemcphe.LayoutLib.TeamSearch;
 import com.jemcphe.LeagueLib.Json;
 import com.jemcphe.LeagueLib.WebData;
 
@@ -22,22 +23,25 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	//Create Linear Layouts
-	LinearLayout mainLayout;
-	LayoutParams mainParams;
-	
-	LinearLayout radioLayout;
-	LayoutParams radioParams;
-	
-	LinearLayout entryBox;
-	
-	LinearLayout dataLayout;
-	LayoutParams dataParams;
+	LinearLayout _mainLayout;
+//	LinearLayout mainLayout;
+//	LayoutParams mainParams;
+//	
+//	LinearLayout radioLayout;
+//	LayoutParams radioParams;
+//	
+//	LinearLayout entryBox;
+//	
+//	LinearLayout dataLayout;
+//	LayoutParams dataParams;
 	
 	//Create Displays
+	TeamSearch _search;
 	TeamDisplay _teamDisplay;
 	SpinnerDisplay _teamList;
 	
 	//Declare Variables
+	TextView _searchLabel;
 	TextView dataBox;
 	TextView teamData;
 	RadioGroup teamOptions;
@@ -50,7 +54,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         
         _context = this;
-        
+        LayoutParams lp;
         //Determine data connection
         _connected = WebData.getConnectionStatus(_context);
         //Check for connection
@@ -59,55 +63,61 @@ public class MainActivity extends Activity {
         }
         
         //Create LinearLayout for Main Layout
-        mainLayout = new LinearLayout(_context);
-        mainParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        mainLayout.setLayoutParams(mainParams);
+        _mainLayout = new LinearLayout(_context);
+        lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        _mainLayout.setLayoutParams(lp);
+        
+		_searchLabel = new TextView(_context);
+		_searchLabel.setText("Search For A Team");
+        
+        
+        _search = new TeamSearch(_context, "ex. orioles, red sox, etc...", "GO");
         
         //RadioLayout & Params
-        radioLayout = new LinearLayout(this);
-        radioLayout.setOrientation(LinearLayout.VERTICAL);
-        radioParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-        radioLayout.setLayoutParams(radioParams);
+//        radioLayout = new LinearLayout(this);
+//        radioLayout.setOrientation(LinearLayout.VERTICAL);
+//        radioParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+//        radioLayout.setLayoutParams(radioParams);
         
         //array that holds resources remote
         teamNames = getResources().getStringArray(R.array.remote);
         //call getTeam function
         teamOptions = Elements.getTeam(this, teamNames);
         //Add teamOptions view to radioLayout
-        radioLayout.addView(teamOptions);
+//        radioLayout.addView(teamOptions);
         //Create entryBox that has single EditText With Button
-        entryBox = Elements.singleEntryWithButton(this, "\r\nPlayer Name", "ex. Sam Doe", "Add Player");
-        entryBox.setOrientation(LinearLayout.VERTICAL);
+//        entryBox = Elements.singleEntryWithButton(this, "\r\nPlayer Name", "ex. Sam Doe", "Add Player");
+//        entryBox.setOrientation(LinearLayout.VERTICAL);
         //Create button and findViewById
-        Button dataButton = (Button) entryBox.findViewById(2);
-        dataButton.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				//int to hold radio button id
-				int selectedRadioId = teamOptions.getCheckedRadioButtonId();
-				RadioButton selectedRadio = (RadioButton) findViewById(selectedRadioId);
-				String radioText = (String) selectedRadio.getText();
-				
-				EditText player = (EditText) v.getTag();
-				dataBox.setText("\r\nPlayer Added: " + player.getText().toString() + "\r\n" +
-									"Placing On Team: " + radioText + "\r\n\r\n");
-				teamData.setText(Json.readJSON(radioText));
-
-			}
-		});
+//        Button dataButton = (Button) entryBox.findViewById(2);
+//        dataButton.setOnClickListener(new View.OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				//int to hold radio button id
+//				int selectedRadioId = teamOptions.getCheckedRadioButtonId();
+//				RadioButton selectedRadio = (RadioButton) findViewById(selectedRadioId);
+//				String radioText = (String) selectedRadio.getText();
+//				
+//				EditText player = (EditText) v.getTag();
+//				dataBox.setText("\r\nPlayer Added: " + player.getText().toString() + "\r\n" +
+//									"Placing On Team: " + radioText + "\r\n\r\n");
+//				teamData.setText(Json.readJSON(radioText));
+//
+//			}
+//		});
         
         //Data layout
-        dataLayout = new LinearLayout(this);
-        dataLayout.setOrientation(LinearLayout.VERTICAL);
-        dataParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-        dataLayout.setLayoutParams(dataParams);
-        
-        dataBox = new TextView(this);
-        teamData = new TextView(this);
-        
-        dataLayout.addView(dataBox);
-        dataLayout.addView(teamData);
+//        dataLayout = new LinearLayout(this);
+//        dataLayout.setOrientation(LinearLayout.VERTICAL);
+//        dataParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+//        dataLayout.setLayoutParams(dataParams);
+//        
+//        dataBox = new TextView(this);
+//        teamData = new TextView(this);
+//        
+//        dataLayout.addView(dataBox);
+//        dataLayout.addView(teamData);
         
        
         
@@ -120,12 +130,14 @@ public class MainActivity extends Activity {
         
         
 //        entryBox.addView(dataLayout);
-        mainLayout.setOrientation(LinearLayout.VERTICAL);
-        mainLayout.addView(radioLayout);
-        mainLayout.addView(entryBox);
+        _mainLayout.setOrientation(LinearLayout.VERTICAL);
+        _mainLayout.addView(_searchLabel);
+        _mainLayout.addView(_search);
+//        _mainLayout.addView(radioLayout);
+//        _mainLayout.addView(entryBox);
         //mainLayout.addView(_teamList);
-        mainLayout.addView(_teamDisplay);
-        setContentView(mainLayout);
+        _mainLayout.addView(_teamDisplay);
+        setContentView(_mainLayout);
     }
 
 
@@ -135,5 +147,14 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+    
+    private void getTeam(String team){
+    	
+    }
+    
+    
+    
+    
+    
     
 }

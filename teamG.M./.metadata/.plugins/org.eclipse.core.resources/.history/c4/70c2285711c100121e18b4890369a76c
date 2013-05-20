@@ -1,0 +1,48 @@
+package com.jemcphe.LayoutLib;
+
+import android.content.Context;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+public class TeamSearch extends LinearLayout{
+
+	Context _context;
+	LinearLayout _textLayout;
+	LinearLayout _searchLayout;
+	EditText _searchField;
+	Button _searchButton;
+	TextView _searchLabel;
+	
+	public TeamSearch(Context context, String labelText, String hint, String buttonText) {
+		super(context);
+		_context = context;
+		LayoutParams lp;
+		
+		//Instantiate searchLabel
+		_textLayout = new LinearLayout(_context);
+		_textLayout.setOrientation(LinearLayout.VERTICAL);
+		lp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		_textLayout.setLayoutParams(lp);
+		_searchLabel = new TextView(_context);
+		_searchLabel.setText(labelText);
+		_textLayout.addView(_searchLabel);
+		
+		//Instantiate searchField & searchButton
+		_searchLayout = new LinearLayout(_context);
+		lp = new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f);
+		_searchLayout.setLayoutParams(lp);
+		_searchField = new EditText(_context);
+		_searchField.setHint(hint);
+		_textLayout.addView(_searchField);
+		
+		_searchButton = new Button(_context);
+		_searchButton.setText(buttonText);
+		_searchLayout.addView(_searchButton);
+
+		this.addView(_textLayout);
+		this.addView(_searchLayout);
+	}
+	
+}

@@ -1,0 +1,18 @@
+package com.jemcphe.LayoutLib;
+
+import android.content.Context;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+
+public class TeamSearch extends LinearLayout{
+
+	Context _context;
+	EditText _searchField;
+	Button _searchButton;
+	
+	public TeamSearch(Context context) {
+		super(context);
+	}
+	
+}
