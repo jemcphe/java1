@@ -3,7 +3,6 @@ package com.jemcphe.teamgm;
 import java.util.ArrayList;
 
 import com.jemcphe.LayoutLib.Elements;
-import com.jemcphe.LayoutLib.SpinnerDisplay;
 import com.jemcphe.LayoutLib.TeamDisplay;
 import com.jemcphe.LeagueLib.Json;
 import com.jemcphe.LeagueLib.Teams;
@@ -35,9 +34,7 @@ public class MainActivity extends Activity {
 	LinearLayout dataLayout;
 	LayoutParams dataParams;
 	
-	//Create Displays
 	TeamDisplay _teamDisplay;
-	SpinnerDisplay _teamList;
 	
 	//Declare Variables
 	TextView dataBox;
@@ -104,19 +101,14 @@ public class MainActivity extends Activity {
         dataLayout.addView(dataBox);
         dataLayout.addView(teamData);
         
-        //Add SpinnerDisplay
-        _teamList = new SpinnerDisplay(_context);
-        
         //Add Team Display
         _teamDisplay = new TeamDisplay(_context);
-        
         
         
 //        entryBox.addView(dataLayout);
         mainLayout.setOrientation(LinearLayout.VERTICAL);
         mainLayout.addView(radioLayout);
         mainLayout.addView(entryBox);
-        mainLayout.addView(_teamList);
         mainLayout.addView(_teamDisplay);
         setContentView(mainLayout);
     }

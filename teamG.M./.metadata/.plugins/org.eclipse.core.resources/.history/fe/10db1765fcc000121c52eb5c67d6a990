@@ -38,7 +38,6 @@ public class MainActivity extends Activity {
 	//Create Displays
 	TeamDisplay _teamDisplay;
 	SpinnerDisplay _teamList;
-	
 	//Declare Variables
 	TextView dataBox;
 	TextView teamData;
@@ -104,19 +103,14 @@ public class MainActivity extends Activity {
         dataLayout.addView(dataBox);
         dataLayout.addView(teamData);
         
-        //Add SpinnerDisplay
-        _teamList = new SpinnerDisplay(_context);
-        
         //Add Team Display
         _teamDisplay = new TeamDisplay(_context);
-        
         
         
 //        entryBox.addView(dataLayout);
         mainLayout.setOrientation(LinearLayout.VERTICAL);
         mainLayout.addView(radioLayout);
         mainLayout.addView(entryBox);
-        mainLayout.addView(_teamList);
         mainLayout.addView(_teamDisplay);
         setContentView(mainLayout);
     }
