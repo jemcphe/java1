@@ -2,12 +2,17 @@ package com.jemcphe.teamgm;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 //import java.net.URLEncoder;
 
 import com.jemcphe.LayoutLib.Elements;
 import com.jemcphe.LayoutLib.SpinnerDisplay;
 import com.jemcphe.LayoutLib.TeamDisplay;
 import com.jemcphe.LayoutLib.TeamSearch;
+import com.jemcphe.LeagueLib.FileInfo;
 import com.jemcphe.LeagueLib.WebData;
 
 import android.os.AsyncTask;
@@ -19,6 +24,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -51,6 +57,8 @@ public class MainActivity extends Activity {
 	String[] teamNames;
 	Boolean _connected = false;
 	Context _context;
+	HashMap<String, String> _history;
+
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +66,12 @@ public class MainActivity extends Activity {
         
         _context = this;
         LayoutParams lp;
+        
+        _history = new HashMap<String, String>();
+        _history = getHistory();
+        Log.i("HISTORY READ", _history.toString());
+        
+        
         //Determine data connection
         _connected = WebData.getConnectionStatus(_context);
         //Check for connection
@@ -125,6 +139,21 @@ public class MainActivity extends Activity {
 		}
     }
     
+    @SuppressWarnings("unchecked")
+	private HashMap<String, String> getHistory(){
+    	Object stored = FileInfo.readObjectFile(_context, "history", false);
+    	
+    	HashMap<String, String> history;
+    	if(stored == null){
+    		Log.i("HISTORY", "NO HISTORY FILE FOUND");
+    		history = new HashMap<String, String>();
+    	} else {
+    		history = (HashMap<String, String>) stored;
+    	}
+    	return history;
+    }
+    
+    
     private class TeamRequest extends AsyncTask<URL, Void, String>{
     	@Override
     	protected String doInBackground(URL... urls){
@@ -138,6 +167,24 @@ public class MainActivity extends Activity {
     	@Override
     	protected void onPostExecute(String result){
     		Log.i("URL RESPONSE", result);
+    		try {
+				JSONObject json = new JSONObject(result);
+				JSONObject results = json.getJSONObject("info");
+				if(results.getString("name").compareTo("") == 0) {
+					Toast toast = Toast.makeText(_context, "Invalid Team", Toast.LENGTH_SHORT);
+					toast.show();
+				} else {
+					Toast toast = Toast.makeText(_context, "Valid Entry" + results.getString("name"),  Toast.LENGTH_SHORT);
+					toast.show();
+					Log.i("TEAM DATA", results.toString());
+					_history.put(results.getString("name"), results.toString());
+					FileInfo.storeObjectFile(_context, "history", _history, false);
+					FileInfo.storeStringFile(_context, "temp", results.toString(), true);
+				}
+
+			} catch (JSONException e) {
+				Log.e("JSON", "JSON OBJECT EXCEPTION");
+			}
     	}
     }
     
