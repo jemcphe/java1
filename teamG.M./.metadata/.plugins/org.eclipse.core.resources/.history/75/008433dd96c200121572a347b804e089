@@ -32,12 +32,4 @@ public class TeamSearch extends LinearLayout{
 		this.addView(_searchButton);
 	}
 	
-	public EditText getField(){
-		return _searchField;
-	}
-	
-	public Button getButton(){
-		return _searchButton;
-	}
-	
 }
