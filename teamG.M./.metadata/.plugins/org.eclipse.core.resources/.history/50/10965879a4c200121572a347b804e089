@@ -2,12 +2,13 @@ package com.jemcphe.teamgm;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-//import java.net.URLEncoder;
+import java.net.URLEncoder;
 
 import com.jemcphe.LayoutLib.Elements;
 import com.jemcphe.LayoutLib.SpinnerDisplay;
 import com.jemcphe.LayoutLib.TeamDisplay;
 import com.jemcphe.LayoutLib.TeamSearch;
+import com.jemcphe.LeagueLib.Json;
 import com.jemcphe.LeagueLib.WebData;
 
 import android.os.AsyncTask;
@@ -79,6 +80,7 @@ public class MainActivity extends Activity {
         Button searchButton = _search.getButton();
         
         searchButton.setOnClickListener(new OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
 				getTeam(_search.getField().getText().toString());
@@ -112,13 +114,17 @@ public class MainActivity extends Activity {
     
     private void getTeam(String team){
     	Log.i("CLICK: ", team);
-    	String baseURL = "http://jemcphe.cloudant.com/mlb/" + team;
-    	//Create URL to pass to TeamRequest
+    	String baseURL = "https://jemcphe.cloudant.com/mlb/" + team + "";
+    	String qs;
+    	try {
+			qs = URLEncoder.encode(baseURL, "UTF-8");
+		} catch (Exception e) {
+			Log.e("BAD URL", "ENCODING PROBLEM");
+			qs = "";
+		}
     	URL finalURL;
     	try {
-			finalURL = new URL(baseURL);
-			TeamRequest tr = new TeamRequest();
-			tr.execute(finalURL);
+			finalURL = new URL(qs);
 		} catch (MalformedURLException e) {
 			Log.e("BAD URL", "MALFORMED URL");
 			finalURL = null;
@@ -136,8 +142,8 @@ public class MainActivity extends Activity {
     	}
     	
     	@Override
-    	protected void onPostExecute(String result){
-    		Log.i("URL RESPONSE", result);
+    	protected void onPostExecute(String results){
+    		
     	}
     }
     

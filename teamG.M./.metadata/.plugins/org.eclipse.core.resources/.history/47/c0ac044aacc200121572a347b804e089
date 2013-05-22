@@ -113,7 +113,13 @@ public class MainActivity extends Activity {
     private void getTeam(String team){
     	Log.i("CLICK: ", team);
     	String baseURL = "http://jemcphe.cloudant.com/mlb/" + team;
-    	//Create URL to pass to TeamRequest
+//    	String qs;
+//    	try {
+//			qs = URLEncoder.encode(baseURL, "UTF-8");
+//		} catch (Exception e) {
+//			Log.e("BAD URL", "ENCODING PROBLEM");
+//			qs = "";
+//		}
     	URL finalURL;
     	try {
 			finalURL = new URL(baseURL);

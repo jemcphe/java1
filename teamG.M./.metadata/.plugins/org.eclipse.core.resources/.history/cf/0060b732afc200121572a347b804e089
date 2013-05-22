@@ -1,0 +1,11 @@
+package com.jemcphe.LeagueLib;
+
+import android.content.Context;
+
+public class FileInfo {
+
+	public static Boolean storeStringFile(Context context, String filename, String content, Boolean external){
+		
+		return true;
+	}
+}
