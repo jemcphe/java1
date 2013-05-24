@@ -3,18 +3,14 @@ package com.jemcphe.teamgm;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-//import java.net.URLEncoder;
-
 import com.jemcphe.LayoutLib.Elements;
 import com.jemcphe.LayoutLib.SpinnerDisplay;
 import com.jemcphe.LayoutLib.TeamDisplay;
 import com.jemcphe.LayoutLib.TeamSearch;
 import com.jemcphe.LeagueLib.FileInfo;
 import com.jemcphe.LeagueLib.WebData;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
@@ -24,6 +20,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.RadioGroup;
@@ -33,32 +30,35 @@ import android.view.View.OnClickListener;
 public class MainActivity extends Activity {
 	//Create Linear Layouts
 	LinearLayout _mainLayout;
-//	LinearLayout mainLayout;
-//	LayoutParams mainParams;
-//	
-//	LinearLayout radioLayout;
-//	LayoutParams radioParams;
-//	
-//	LinearLayout entryBox;
-//	
-//	LinearLayout dataLayout;
-//	LayoutParams dataParams;
-	
+	LinearLayout _historyLayout;
 	//Create Displays
 	TeamSearch _search;
 	TeamDisplay _teamDisplay;
 	SpinnerDisplay _teamList;
 	
 	//Declare Variables
+	ScrollView _scrollView;
 	TextView _searchLabel;
 	TextView dataBox;
 	TextView teamData;
+	TextView _historyLabel;
 	RadioGroup teamOptions;
 	String[] teamNames;
 	Boolean _connected = false;
 	Context _context;
 	HashMap<String, String> _history;
-
+	
+	//TeamDisplay Variables for setting values
+	String _teamName;
+	String _pitcher;
+	String _catcher;
+	String _first;
+	String _second;
+	String _third;
+	String _short;
+	String _left;
+	String _center;
+	String _right;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,34 +67,39 @@ public class MainActivity extends Activity {
         _context = this;
         LayoutParams lp;
         
-        _history = new HashMap<String, String>();
-        _history = getHistory();
-        Log.i("HISTORY READ", _history.toString());
-        
+        _history = new HashMap<String, String>();       
         
         //Determine data connection
         _connected = WebData.getConnectionStatus(_context);
         //Check for connection
         if(_connected) {
+        	Toast toast = Toast.makeText(_context, "Currently connected via " + WebData.getConnectionType(_context).toString(), Toast.LENGTH_SHORT);
+			toast.show();
         	Log.i("Network Connection", WebData.getConnectionType(_context));
+        } else {
+			Toast toast = Toast.makeText(_context, "YOU CURRENTLY HAVE NO DATA CONNECTION!!", Toast.LENGTH_LONG);
+			toast.show();
         }
+        _scrollView = new ScrollView(_context);
         
         //Create LinearLayout for Main Layout
         _mainLayout = new LinearLayout(_context);
         lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         _mainLayout.setLayoutParams(lp);
-        
+        _scrollView.addView(_mainLayout);
 		_searchLabel = new TextView(_context);
-		_searchLabel.setText("Search For A Team");
+		_searchLabel.setText("\r\nSearch for A Team To Display & Store Data");
         
         
-        _search = new TeamSearch(_context, "ex. orioles, red sox, etc...", "GO");
+        _search = new TeamSearch(_context, "ex. orioles, red sox, etc...", "Get & Store");
         
         Button searchButton = _search.getButton();
         
         searchButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				_historyLayout.removeView(_historyLabel);
+				_mainLayout.removeView(_teamDisplay);
 				getTeam(_search.getField().getText().toString());
 			}
 		});
@@ -104,16 +109,39 @@ public class MainActivity extends Activity {
         //call getTeam function
         teamOptions = Elements.getTeam(this, teamNames);
         
-        //Add Team Display
-        _teamDisplay = new TeamDisplay(_context);
+        //Create a Layout for pulled data from history
+        _historyLayout = new LinearLayout(_context);
+        _historyLayout.setOrientation(LinearLayout.VERTICAL);
+        lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        _historyLayout.setLayoutParams(lp);
+        
+        
+        Button rawDataButton = new Button(_context);
+        rawDataButton.setText("Show Raw Data");
+        
+        _historyLayout.addView(rawDataButton);
+
+        rawDataButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				
+				_history = new HashMap<String, String>();
+				_historyLayout.removeView(_historyLabel);
+				_history = getHistory();
+	    		_historyLabel = new TextView(_context);
+				_historyLabel.setText("\r\n" + _history.toString());
+				_historyLayout.addView(_historyLabel);
+			}
+		});
         
         //Add Views to _mainLayout
         _mainLayout.setOrientation(LinearLayout.VERTICAL);
+        _mainLayout.addView(_historyLayout);
         _mainLayout.addView(_searchLabel);
         _mainLayout.addView(_search);
 
-        _mainLayout.addView(_teamDisplay);
-        setContentView(_mainLayout);
+        
+        setContentView(_scrollView);
     }
 
 
@@ -141,14 +169,17 @@ public class MainActivity extends Activity {
     
     @SuppressWarnings("unchecked")
 	private HashMap<String, String> getHistory(){
-    	Object stored = FileInfo.readObjectFile(_context, "history", false);
+    	Object stored = FileInfo.readObjectFile(_context, "history", true);
     	
     	HashMap<String, String> history;
     	if(stored == null){
-    		Log.i("HISTORY", "NO HISTORY FILE FOUND");
+    		Toast toast = Toast.makeText(_context, "THERE IS CURRENTLY NO DATA",  Toast.LENGTH_LONG);
+			toast.show();
     		history = new HashMap<String, String>();
     	} else {
     		history = (HashMap<String, String>) stored;
+    		Toast toast = Toast.makeText(_context, "DATA PULLED FROM STORAGE ",  Toast.LENGTH_LONG);
+			toast.show();
     	}
     	return history;
     }
@@ -166,29 +197,56 @@ public class MainActivity extends Activity {
     	
     	@Override
     	protected void onPostExecute(String result){
+    		//JSON DATA RETRIEVED, Now set TeamDisplay strings
     		Log.i("URL RESPONSE", result);
     		try {
 				JSONObject json = new JSONObject(result);
 				JSONObject results = json.getJSONObject("info");
-				if(results.getString("name").compareTo("") == 0) {
-					Toast toast = Toast.makeText(_context, "Invalid Team", Toast.LENGTH_SHORT);
-					toast.show();
-				} else {
-					Toast toast = Toast.makeText(_context, "Valid Entry" + results.getString("name"),  Toast.LENGTH_SHORT);
+
+					Toast toast = Toast.makeText(_context, results.getString("name") + " data displayed & stored to device",  Toast.LENGTH_SHORT);
 					toast.show();
 					Log.i("TEAM DATA", results.toString());
+					Log.i("TEST DATA GRAB", results.getString("location").toString());
+					_teamName = TeamDisplay.setName(results.getString("location") + " "  + results.getString("name"));
+					_pitcher = TeamDisplay.setPitcher(results.getString("pitcher"));
+					_catcher = TeamDisplay.setCatcher(results.getString("catcher"));
+					_first = TeamDisplay.setFirst(results.getString("first"));
+					_second = TeamDisplay.setSecond(results.getString("second"));
+					_third = TeamDisplay.setThird(results.getString("third"));
+					_short = TeamDisplay.setShort(results.getString("short"));
+					_left = TeamDisplay.setLeft(results.getString("left"));
+					_center = TeamDisplay.setCenter(results.getString("center"));
+					_right = TeamDisplay.setRight(results.getString("right") + "\r\n");
+					//Create Team Display
+			        _teamDisplay = new TeamDisplay(_context);
+					//Add Team Display to mainLayout
+					_mainLayout.addView(_teamDisplay);
 					_history.put(results.getString("name"), results.toString());
-					FileInfo.storeObjectFile(_context, "history", _history, false);
+					FileInfo.storeObjectFile(_context, "history", _history, true);
 					FileInfo.storeStringFile(_context, "temp", results.toString(), true);
-				}
 
 			} catch (JSONException e) {
+				Toast toast = Toast.makeText(_context, "Invalid Team Entry. Please Try Again.", Toast.LENGTH_LONG);
+				toast.show();
 				Log.e("JSON", "JSON OBJECT EXCEPTION");
 			}
     	}
     }
     
-    
+	
+//	@SuppressWarnings({"rawtypes" })
+//	public void readFromFile(HashMap history) {
+//		Set historySet = history.entrySet();
+//		Iterator i = historySet.iterator();
+//		while(i.hasNext()) {
+//			Map.Entry mapEntry = (Map.Entry) i.next();
+//			_historyLabel = new TextView(_context);
+//			_historyLabel.setText(mapEntry.getKey().toString() + "\r\n"+ mapEntry.getKey().toString());
+//			System.out.println("HASH KEY: "+ mapEntry.getKey());
+//		}
+//		
+//
+//	}
     
     
 }

@@ -1,0 +1,157 @@
+package com.jemcphe.LayoutLib;
+
+import android.content.Context;
+import android.widget.GridLayout;
+import android.widget.TextView;
+
+public class TeamDisplay extends GridLayout{
+
+	TextView _name;
+	TextView _pitcher;
+	TextView _catcher;
+	TextView _first;
+	TextView _second;
+	TextView _third;
+	TextView _short;
+	TextView _left;
+	TextView _center;
+	TextView _right;
+	Context _context;
+	
+	//static Strings for JSON Data
+	static String _teamNameData;
+	static String _pitcherData;
+	static String _catcherData;
+	static String _firstData;
+	static String _secondData;
+	static String _thirdData;
+	static String _shortData;
+	static String _leftData;
+	static String _centerData;
+	static String _rightData;
+	
+	public TeamDisplay(Context context) {
+		super(context);
+		
+		_context = context;
+		
+		//give layout 2 columns
+		this.setColumnCount(2);
+		
+		//Create TextView Labels
+		TextView nameLabel = new TextView(_context);
+		_name = new TextView(_context);
+		nameLabel.setText("Team Name: ");
+		_name.setText(_teamName);
+		
+		TextView pitcherLabel = new TextView(_context);
+		_pitcher = new TextView(_context);
+		pitcherLabel.setText("Pitcher: ");
+		
+		TextView catcherLabel = new TextView(_context);
+		_catcher = new TextView(_context);
+		catcherLabel.setText("Catcher: ");
+		
+		TextView firstLabel = new TextView(_context);
+		_first = new TextView(_context);
+		firstLabel.setText("First Base: ");
+		
+		TextView secondLabel = new TextView(_context);
+		_second = new TextView(_context);
+		secondLabel.setText("Second Base: ");
+		
+		TextView thirdLabel = new TextView(_context);
+		_third = new TextView(_context);
+		thirdLabel.setText("Third Base: ");
+		
+		TextView shortLabel = new TextView(_context);
+		_short = new TextView(_context);
+		shortLabel.setText("Shortstop: ");
+		
+		TextView leftLabel = new TextView(_context);
+		_left = new TextView(_context);
+		leftLabel.setText("Left Field: ");
+		
+		TextView centerLabel = new TextView(_context);
+		_center = new TextView(_context);
+		centerLabel.setText("Center Field: ");
+		
+		TextView rightLabel = new TextView(_context);
+		_right = new TextView(_context);
+		rightLabel.setText("Right Field: ");
+		
+		this.addView(nameLabel);
+		this.addView(_name);
+		this.addView(pitcherLabel);
+		this.addView(_pitcher);
+		this.addView(catcherLabel);
+		this.addView(_catcher);
+		this.addView(firstLabel);
+		this.addView(_first);
+		this.addView(secondLabel);
+		this.addView(_second);
+		this.addView(thirdLabel);
+		this.addView(_third);
+		this.addView(shortLabel);
+		this.addView(_short);
+		this.addView(leftLabel);
+		this.addView(_left);
+		this.addView(centerLabel);
+		this.addView(_center);
+		this.addView(rightLabel);
+		this.addView(_right);
+
+	}
+	
+	public static String setName(String name){
+		_teamName = name;
+		return _teamName;
+	}
+	
+	public static String setPitcher(String name){
+		_teamName = name;
+		return _teamName;
+	}
+	
+	public static String setCatcher(String name){
+		_teamName = name;
+		return _teamName;
+	}
+	
+	public static String setFirst(String name){
+		_teamName = name;
+		return _teamName;
+	}
+	
+	public static String setSecond(String name){
+		_teamName = name;
+		return _teamName;
+	}
+	
+	public static String setThird(String name){
+		_teamName = name;
+		return _teamName;
+	}
+	
+	public static String setShort(String name){
+		_teamName = name;
+		return _teamName;
+	}
+	
+	public static String setLeft(String name){
+		_teamName = name;
+		return _teamName;
+	}
+	
+	public static String setCenter(String name){
+		_teamName = name;
+		return _teamName;
+	}
+	
+	public static String setRight(String name){
+		_teamName = name;
+		return _teamName;
+	}
+	
+	
+}
