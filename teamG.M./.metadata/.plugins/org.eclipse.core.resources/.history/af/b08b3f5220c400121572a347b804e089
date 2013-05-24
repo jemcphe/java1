@@ -90,6 +90,7 @@ public class MainActivity extends Activity {
 		_searchLabel = new TextView(_context);
 		_searchLabel.setText("\r\nSearch for A Team To Display & Store Data");
         
+        
         _search = new TeamSearch(_context, "ex. orioles, red sox, etc...", "Get & Store");
         
         Button searchButton = _search.getButton();

@@ -1,7 +1,0 @@
-package com.jemcphe.LeagueLib;
-
-public enum Teams {
-	Texas("Texas Rangers", "Ian Kinsler", "2nd Base", "AL West"),
-	Yankees("New York Yankees", "Derek Jeter", "Shortstop", "AL East");
-	
-}
