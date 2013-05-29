@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <LinearLayout 
+        android:id="@+id/datalayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+            	<Button
+            	    android:id="@+id/dataButton"
+            	    android:layout_width="match_parent"
+            	    android:layout_height="wrap_content"
+            	    android:text="@string/show_raw_data" />
+     </LinearLayout>
+
+            	<TextView
+            	    android:id="@+id/searchLabel"
+            	    android:layout_width="match_parent"
+            	    android:layout_height="wrap_content"
+            	    android:text="@string/search_for_a_team_to_display_and_store_data" />
+
+            	<EditText
+            	    android:id="@+id/searchField"
+            	    android:layout_width="0dip"
+            	    android:layout_height="wrap_content"
+            	    android:layout_weight="1"
+            	    android:hint="@string/search_hint" />
+
+    
+</LinearLayout>

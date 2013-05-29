@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.HashMap;
 import org.json.JSONException;
 import org.json.JSONObject;
-import com.jemcphe.LayoutLib.Elements;
 import com.jemcphe.LayoutLib.SpinnerDisplay;
 import com.jemcphe.LayoutLib.TeamDisplay;
 import com.jemcphe.LayoutLib.TeamSearch;
@@ -19,10 +18,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
@@ -31,6 +30,7 @@ public class MainActivity extends Activity {
 	//Create Linear Layouts
 	LinearLayout _mainLayout;
 	LinearLayout _historyLayout;
+	LinearLayout _teamLayout;
 	//Create Displays
 	TeamSearch _search;
 	TeamDisplay _teamDisplay;
@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
 	ScrollView _scrollView;
 	TextView _searchLabel;
 	TextView dataBox;
-	TextView teamData;
+	TextView _teamData;
 	TextView _historyLabel;
 	RadioGroup teamOptions;
 	String[] teamNames;
@@ -60,15 +60,39 @@ public class MainActivity extends Activity {
 	String _center;
 	String _right;
 	
+	public void updateData(JSONObject data){
+		
+		try {
+			((TextView) findViewById(R.id.teamNameData)).setText(data.getString("location") + " " + data.getString("name"));
+			((TextView) findViewById(R.id.pitcherData)).setText(data.getString("pitcher"));
+			((TextView) findViewById(R.id.catcherData)).setText(data.getString("catcher"));
+			((TextView) findViewById(R.id.firstData)).setText(data.getString("first"));
+			((TextView) findViewById(R.id.secondData)).setText(data.getString("second"));
+			((TextView) findViewById(R.id.thirdData)).setText(data.getString("third"));
+			((TextView) findViewById(R.id.shortData)).setText(data.getString("short"));
+			((TextView) findViewById(R.id.leftData)).setText(data.getString("left"));
+			((TextView) findViewById(R.id.centerData)).setText(data.getString("center"));
+			((TextView) findViewById(R.id.rightData)).setText(data.getString("right"));
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			Log.e("JSON ERROR", e.toString());
+		}
+	}
+	
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+        setContentView(R.layout.applayout);
+        
         _context = this;
-        LayoutParams lp;
+//        LayoutParams lp;
         
         _history = new HashMap<String, String>();       
-        
+        _historyLayout = (LinearLayout) findViewById(R.id.historyLayout);
+		_teamLayout = (LinearLayout) findViewById(R.id.teamDataLayout);
+
         //Determine data connection
         _connected = WebData.getConnectionStatus(_context);
         //Check for connection
@@ -80,67 +104,51 @@ public class MainActivity extends Activity {
 			Toast toast = Toast.makeText(_context, "YOU CURRENTLY HAVE NO DATA CONNECTION!!", Toast.LENGTH_LONG);
 			toast.show();
         }
-        _scrollView = new ScrollView(_context);
         
         //Create LinearLayout for Main Layout
-        _mainLayout = new LinearLayout(_context);
-        lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        _mainLayout.setLayoutParams(lp);
-        _scrollView.addView(_mainLayout);
-		_searchLabel = new TextView(_context);
-		_searchLabel.setText("\r\nSearch for A Team To Display & Store Data");
+        _mainLayout = (LinearLayout) findViewById(R.layout.applayout);
         
-        _search = new TeamSearch(_context, "ex. orioles, red sox, etc...", "Get & Store");
-        
-        Button searchButton = _search.getButton();
+        Button searchButton = (Button) findViewById(R.id.searchButton);
         
         searchButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				_historyLayout.removeView(_historyLabel);
-				_mainLayout.removeView(_teamDisplay);
-				getTeam(_search.getField().getText().toString());
+				EditText field = (EditText) findViewById(R.id.searchField);
+				_teamLayout.setVisibility(8);
+				//_historyLabel.setVisibility(8);
+				//_mainLayout.removeView(_teamDisplay);
+				getTeam(field.getText().toString());
+				_teamLayout.setVisibility(0);
 			}
 		});
         
-        //array that holds resources remote
-        teamNames = getResources().getStringArray(R.array.remote);
-        //call getTeam function
-        teamOptions = Elements.getTeam(this, teamNames);
+//        //array that holds resources remote
+//        teamNames = getResources().getStringArray(R.array.remote);
+//        //call getTeam function
+//        teamOptions = Elements.getTeam(this, teamNames);
         
         //Create a Layout for pulled data from history
-        _historyLayout = new LinearLayout(_context);
-        _historyLayout.setOrientation(LinearLayout.VERTICAL);
-        lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-        _historyLayout.setLayoutParams(lp);
+//        _historyLayout.setOrientation(LinearLayout.VERTICAL);
+//        lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+//        _historyLayout.setLayoutParams(lp);
         
         
-        Button rawDataButton = new Button(_context);
-        rawDataButton.setText("Show Raw Data");
+//        Button rawDataButton = (Button) findViewById(R.id.dataButton);
+//        rawDataButton.setText("Show Raw Data");
         
-        _historyLayout.addView(rawDataButton);
+//        _historyLayout.addView(rawDataButton);
 
-        rawDataButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				
-				_history = new HashMap<String, String>();
-				_historyLayout.removeView(_historyLabel);
-				_history = getHistory();
-	    		_historyLabel = new TextView(_context);
-				_historyLabel.setText("\r\n" + _history.toString());
-				_historyLayout.addView(_historyLabel);
-			}
-		});
-        
-        //Add Views to _mainLayout
-        _mainLayout.setOrientation(LinearLayout.VERTICAL);
-        _mainLayout.addView(_historyLayout);
-        _mainLayout.addView(_searchLabel);
-        _mainLayout.addView(_search);
-
-        
-        setContentView(_scrollView);
+//        rawDataButton.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				
+//				_history = new HashMap<String, String>();
+//				_history = getHistory();
+//	    		_historyLabel = (TextView) findViewById(R.id.historyLabel);
+//				_historyLabel.setText("\r\n" + _history.toString());
+//				_historyLabel.setVisibility(0);
+//			}
+//		});       
     }
 
 
@@ -206,20 +214,7 @@ public class MainActivity extends Activity {
 					toast.show();
 					Log.i("TEAM DATA", results.toString());
 					Log.i("TEST DATA GRAB", results.getString("location").toString());
-					_teamName = TeamDisplay.setName(results.getString("location") + " "  + results.getString("name"));
-					_pitcher = TeamDisplay.setPitcher(results.getString("pitcher"));
-					_catcher = TeamDisplay.setCatcher(results.getString("catcher"));
-					_first = TeamDisplay.setFirst(results.getString("first"));
-					_second = TeamDisplay.setSecond(results.getString("second"));
-					_third = TeamDisplay.setThird(results.getString("third"));
-					_short = TeamDisplay.setShort(results.getString("short"));
-					_left = TeamDisplay.setLeft(results.getString("left"));
-					_center = TeamDisplay.setCenter(results.getString("center"));
-					_right = TeamDisplay.setRight(results.getString("right") + "\r\n");
-					//Create Team Display
-			        _teamDisplay = new TeamDisplay(_context);
-					//Add Team Display to mainLayout
-					_mainLayout.addView(_teamDisplay);
+					updateData(results);
 					_history.put(results.getString("name"), results.toString());
 					FileInfo.storeObjectFile(_context, "history", _history, true);
 					FileInfo.storeStringFile(_context, "temp", results.toString(), true);
